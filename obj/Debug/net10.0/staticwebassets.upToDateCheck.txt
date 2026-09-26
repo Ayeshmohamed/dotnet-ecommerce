@@ -18,3 +18,15 @@ wwwroot\uploads\categories\78f549db-7bc7-4a4b-a056-7f25a6d2f4d0.png
 wwwroot\uploads\categories\d8b51003-a074-4b02-a977-63855dca4803.png
 wwwroot\uploads\products\cbcb556c-db89-46a4-a5e4-f455dd832fcf.png
 wwwroot\uploads\products\c4465aad-2b50-471d-bd68-1f46077c56e3.png
+wwwroot\uploads\categories\bc6d4718-f18a-429e-984b-4c3946b8fe00.png
+wwwroot\uploads\categories\ee5d6fd3-4927-4330-b567-3cc658dcdf5b.png
+wwwroot\uploads\categories\d1fc23eb-e38a-41d3-af99-eacd8e273f21.png
+wwwroot\uploads\categories\9a4e7243-903d-4f00-abf4-512d6b05325b.png
+wwwroot\uploads\categories\e78e8513-a5a8-4514-be8e-358f266d8d75.png
+wwwroot\uploads\categories\36109bf1-ae28-4bc3-a26b-ef474dee55ca.png
+wwwroot\uploads\categories\06d5849d-2620-4925-a16e-0c5096020163.png
+wwwroot\uploads\categories\894dc2c8-732a-4bcc-8db1-f6306a79fd14.png
+wwwroot\uploads\categories\b19904c5-621c-4322-a3be-ee731b4f2e3f.png
+wwwroot\uploads\categories\882e8ae3-f157-4427-9c98-f079d7458537.png
+wwwroot\uploads\categories\45cb24ac-cbae-4e3a-aa6b-a1ff0561c2d1.png
+wwwroot\uploads\categories\7f903ca3-b28e-435e-b1b9-f3de3c15117b.png

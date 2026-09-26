@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Apps.Migrations
 {
-    [DbContext(typeof(EcommerceContext))]
+    [DbContext(typeof(DatabaseContext))]
     partial class EcommerceContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

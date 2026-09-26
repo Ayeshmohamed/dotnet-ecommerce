@@ -8,9 +8,9 @@ namespace Apps.Repository
 {
     public class ProductImageRepository
     {
-        private readonly EcommerceContext _context;
+        private readonly DatabaseContext _context;
         private readonly FilesUpload _filesUpload;
-        public ProductImageRepository(EcommerceContext context, FilesUpload filesUpload) { 
+        public ProductImageRepository(DatabaseContext context, FilesUpload filesUpload) { 
             _context = context;
             _filesUpload = filesUpload;
         }

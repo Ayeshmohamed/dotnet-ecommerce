@@ -3,7 +3,7 @@ using Apps.Repository;
 
 namespace Apps.Services
 {
-    public class CategoryService
+    public class CategoryService : ICategory
     {
         private readonly CategoryRepository _categoryRepository;
 
@@ -11,31 +11,9 @@ namespace Apps.Services
             _categoryRepository = categoryRepository;
         }
 
-        public async Task<List<GetCategoriesDto>> GetCategories()
+        public async Task<List<GetCategoriesDto>> GetCategories(FilterCategories request)
         {
-            var categories = await _categoryRepository.GetCategories();
-            
-            
-            return categories.Select(category => new GetCategoriesDto
-            {
-                Id = category.Id,
-                Name = category.Name,
-                Description = category.Description,
-                Image = category.Image,
-                IsActive = category.IsActive,
-                CreatedAt = category.CreatedAt,
-                UpdatedAt = category.UpdatedAt,
-                Parent = category.Parent != null ?   new GetCategoryDto
-                {
-                    Id = category.Parent.Id,
-                    Name = category.Parent.Name,
-                    Description = category.Parent.Description,
-                    Image = category.Parent.Image,
-                    IsActive = category.Parent.IsActive,
-                    CreatedAt = category.Parent.CreatedAt,
-                    UpdatedAt = category.Parent.UpdatedAt,
-                } : null,
-            }).ToList();
+            return await _categoryRepository.GetCategories(request);
         }
 
         public async Task<GetCategoryDto> GetCategoryById(int id) { 
@@ -54,6 +32,7 @@ namespace Apps.Services
         }
 
         public async Task StoreCategory(CreateCategoryDto data) {
+
             await _categoryRepository.StoreCateogory(data);
         }
 

@@ -7,12 +7,12 @@ using Microsoft.EntityFrameworkCore;
 
 public class ProductRepository 
 {
-    private readonly EcommerceContext _context;
+    private readonly DatabaseContext _context;
     private readonly FilesUpload  _filesUpload;
 
     private readonly ProductImageRepository _productImageRepository;
 
-    public ProductRepository(EcommerceContext context, FilesUpload filesUpload, ProductImageRepository productImageRepository)
+    public ProductRepository(DatabaseContext context, FilesUpload filesUpload, ProductImageRepository productImageRepository)
     {
         _context = context;
         _filesUpload = filesUpload;

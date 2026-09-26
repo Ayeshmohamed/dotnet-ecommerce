@@ -17,10 +17,9 @@ namespace Apps.Controllers.Api
         }
 
         [HttpGet("index")]
-        [Authorize]
-        public async Task<IResult> Index()
+        public async Task<IResult> Index([FromQuery]FilterCategories request)
         {
-            var categories = await _categoryService.GetCategories();
+            var categories = await _categoryService.GetCategories(request);
 
             return Results.Ok(categories);
         }

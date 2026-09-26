@@ -1,9 +1,11 @@
 using Apps.Data;
+using Apps.Options;
 using Apps.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
-
+using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 var jwtKey = builder.Configuration["Jwt:Key"]!;
 
@@ -32,7 +34,33 @@ builder.Services
 builder.Services.AddAuthorization();
 
 builder.Services.AddControllersWithViews();
-builder.Services.AddDbContext<EcommerceContext>();
+
+builder.Services.ConfigureOptions<DatabaseOptionsSetup>();
+builder.Services.AddDbContext<DatabaseContext>(
+    (serviceProvider, dbContextOptionsBuilder) =>
+        {
+            var databaseOptions = serviceProvider
+               .GetRequiredService<IOptions<DatabaseOptions>>()!
+               .Value;
+
+            dbContextOptionsBuilder.UseSqlServer(
+                databaseOptions.ConnectionString,
+                sqlServerAction =>
+                {
+                    //sqlServerAction.EnableRetryOnFailure(databaseOptions.MaxRetryCount);
+
+                    sqlServerAction.CommandTimeout(databaseOptions.CommandTimeout);
+                });
+
+            dbContextOptionsBuilder.EnableDetailedErrors(databaseOptions.EnableDetailedErrors);
+
+            // Enable only during development
+            if (builder.Environment.IsDevelopment())
+            {
+                dbContextOptionsBuilder.EnableSensitiveDataLogging(databaseOptions.EnableSensitiveDataLogging);
+            }
+        }
+    );
 
 builder.Services.AddServices();
 builder.Services.AddRepositories();

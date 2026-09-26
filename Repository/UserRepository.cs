@@ -8,9 +8,9 @@ namespace Apps.Repository
 {
     public class UserRepository
     {
-        private readonly EcommerceContext _context;
+        private readonly DatabaseContext _context;
 
-        public UserRepository(EcommerceContext context) { 
+        public UserRepository(DatabaseContext context) { 
             _context = context;
         }
 
