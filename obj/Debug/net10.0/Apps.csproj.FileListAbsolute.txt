@@ -169,3 +169,8 @@ E:\ecommerce-app\Apps\bin\Debug\net10.0\FluentValidation.DependencyInjectionExte
 E:\ecommerce-app\Apps\bin\Debug\net10.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 E:\ecommerce-app\Apps\bin\Debug\net10.0\Microsoft.Bcl.Cryptography.dll
 E:\ecommerce-app\Apps\obj\Debug\net10.0\Apps.sourcelink.json
+E:\ecommerce-app\Apps\bin\Debug\net10.0\Asp.Versioning.Abstractions.dll
+E:\ecommerce-app\Apps\bin\Debug\net10.0\Asp.Versioning.Http.dll
+E:\ecommerce-app\Apps\bin\Debug\net10.0\Asp.Versioning.Mvc.dll
+E:\ecommerce-app\Apps\bin\Debug\net10.0\Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore.dll
+E:\ecommerce-app\Apps\obj\Debug\net10.0\Apps.MvcApplicationPartsAssemblyInfo.cs

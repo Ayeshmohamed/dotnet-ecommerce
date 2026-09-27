@@ -1,4 +1,5 @@
 ﻿using Apps.Dtos.Categories;
+using Apps.Entities;
 using Apps.Repository;
 
 namespace Apps.Services
@@ -11,23 +12,15 @@ namespace Apps.Services
             _categoryRepository = categoryRepository;
         }
 
-        public async Task<List<GetCategoriesDto>> GetCategories(FilterCategories request)
+        public async Task<List<GetCategoriesDto>> GetCategories(FilterCategories request, CancellationToken cancellationToken)
         {
-            return await _categoryRepository.GetCategories(request);
+            return await _categoryRepository.GetCategories(request,cancellationToken);
         }
 
-        public async Task<GetCategoryDto> GetCategoryById(int id) { 
+        public async Task<Category> GetCategoryById(int id) { 
             var category = await _categoryRepository.GetCategoryById(id);
 
-            return new GetCategoryDto { 
-                Id = category.Id,
-                Name = category.Name,
-                Description = category.Description,
-                Image = category.Image,
-                IsActive = category.IsActive,
-                CreatedAt = category.CreatedAt,
-                UpdatedAt = category.UpdatedAt,
-            };
+            return category;
         
         }
 

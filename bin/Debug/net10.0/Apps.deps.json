@@ -8,15 +8,47 @@
     ".NETCoreApp,Version=v10.0": {
       "Apps/1.0.0": {
         "dependencies": {
+          "Asp.Versioning.Mvc": "10.2.1",
           "FluentValidation.DependencyInjectionExtensions": "12.1.1",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "10.0.11",
           "Microsoft.EntityFrameworkCore": "10.0.11",
           "Microsoft.EntityFrameworkCore.Design": "10.0.11",
           "Microsoft.EntityFrameworkCore.SqlServer": "10.0.11",
+          "Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore": "10.0.11",
           "Newtonsoft.Json": "13.0.4"
         },
         "runtime": {
           "Apps.dll": {}
+        }
+      },
+      "Asp.Versioning.Abstractions/10.2.1": {
+        "runtime": {
+          "lib/net10.0/Asp.Versioning.Abstractions.dll": {
+            "assemblyVersion": "10.2.0.0",
+            "fileVersion": "10.2.9714.15149"
+          }
+        }
+      },
+      "Asp.Versioning.Http/10.2.1": {
+        "dependencies": {
+          "Asp.Versioning.Abstractions": "10.2.1"
+        },
+        "runtime": {
+          "lib/net10.0/Asp.Versioning.Http.dll": {
+            "assemblyVersion": "10.2.0.0",
+            "fileVersion": "10.2.9714.15157"
+          }
+        }
+      },
+      "Asp.Versioning.Mvc/10.2.1": {
+        "dependencies": {
+          "Asp.Versioning.Http": "10.2.1"
+        },
+        "runtime": {
+          "lib/net10.0/Asp.Versioning.Mvc.dll": {
+            "assemblyVersion": "10.2.0.0",
+            "fileVersion": "10.2.9714.15157"
+          }
         }
       },
       "Azure.Core/1.50.0": {
@@ -542,6 +574,17 @@
           }
         }
       },
+      "Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore/10.0.11": {
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore.Relational": "10.0.11"
+        },
+        "runtime": {
+          "lib/net10.0/Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore.dll": {
+            "assemblyVersion": "10.0.11.0",
+            "fileVersion": "10.0.1126.37416"
+          }
+        }
+      },
       "Microsoft.Identity.Client/4.84.2": {
         "dependencies": {
           "Microsoft.IdentityModel.Abstractions": "8.19.2"
@@ -843,6 +886,27 @@
       "serviceable": false,
       "sha512": ""
     },
+    "Asp.Versioning.Abstractions/10.2.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-jMBztsVim+rYVrkNY23dMuOjTGXGQ9+je1xb3i17KgUof7OcBZtMMDduEWoCQ52SpTlYqKsuzgJyUMCMOFCBfg==",
+      "path": "asp.versioning.abstractions/10.2.1",
+      "hashPath": "asp.versioning.abstractions.10.2.1.nupkg.sha512"
+    },
+    "Asp.Versioning.Http/10.2.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-XaVOKS4AV6a6JdFsiuyLkNwU0ilWhUK2U71mBEXJsgi5AGpo24UkfZ4KUhpRGpuMmQNrugS7yxCIscGcnujdFA==",
+      "path": "asp.versioning.http/10.2.1",
+      "hashPath": "asp.versioning.http.10.2.1.nupkg.sha512"
+    },
+    "Asp.Versioning.Mvc/10.2.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-fMzUraYZOAobKQn2PffrgPsULbCWFeWroYRYndPasxPsiQl1+i8x5qYRuMYZAbzDrBnymPUMBxT2gZG2PwbkcQ==",
+      "path": "asp.versioning.mvc/10.2.1",
+      "hashPath": "asp.versioning.mvc.10.2.1.nupkg.sha512"
+    },
     "Azure.Core/1.50.0": {
       "type": "package",
       "serviceable": true,
@@ -996,6 +1060,13 @@
       "sha512": "sha512-PJPtFYsZ+r+uz9qqXWUTEyKeJ1EiBGIJtqavkg9ZXijjGSFAk4Fgi5sqIxj+uAyLZwEKgexDUQXhWhvU6l3+og==",
       "path": "microsoft.extensions.dependencymodel/10.0.11",
       "hashPath": "microsoft.extensions.dependencymodel.10.0.11.nupkg.sha512"
+    },
+    "Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore/10.0.11": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-R3OADoj7geeFn7BYbw03milCTYgC57MeqGAUQtOOzB1fzYhZMl1grGAwz3wZdoYnD4/RIEYBbOy5PspZHlr7fQ==",
+      "path": "microsoft.extensions.diagnostics.healthchecks.entityframeworkcore/10.0.11",
+      "hashPath": "microsoft.extensions.diagnostics.healthchecks.entityframeworkcore.10.0.11.nupkg.sha512"
     },
     "Microsoft.Identity.Client/4.84.2": {
       "type": "package",

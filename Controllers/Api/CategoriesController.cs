@@ -1,11 +1,13 @@
 ﻿using Apps.Dtos.Categories;
 using Apps.Services;
+using Asp.Versioning;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Apps.Controllers.Api
 {
     [ApiController]
+    [ApiVersion(1.0)]
     [Route("api/[controller]")]
     public class CategoriesController : ControllerBase
     {
@@ -17,18 +19,37 @@ namespace Apps.Controllers.Api
         }
 
         [HttpGet("index")]
-        public async Task<IResult> Index([FromQuery]FilterCategories request)
+        public async Task<IResult> Index([FromQuery]FilterCategories request, CancellationToken cancellationToken)
         {
-            var categories = await _categoryService.GetCategories(request);
+            var categories = await _categoryService.GetCategories(request, cancellationToken);
 
             return Results.Ok(categories);
         }
         [HttpGet("details/{id}")]
-        public async Task<IResult> Detials(int id)
+        public async Task<IActionResult> Detials(int id)
         {
             var category = await _categoryService.GetCategoryById(id);
 
-            return Results.Ok(category);
+            if (category is null)
+            {
+                return Problem(
+                    statusCode: StatusCodes.Status404NotFound,
+                    title: "Category not found",
+                    detail: $"Category with ID {id} was not found.");
+            }
+
+            GetCategoryDto categoryObject =  new GetCategoryDto
+            {
+                Id = category.Id,
+                Name = category.Name,
+                Description = category.Description,
+                Image = category.Image,
+                IsActive = category.IsActive,
+                CreatedAt = category.CreatedAt,
+                UpdatedAt = category.UpdatedAt,
+            };
+
+            return Ok(category);
         }
 
         [HttpPost("create")]

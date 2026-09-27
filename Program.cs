@@ -1,11 +1,14 @@
 using Apps.Data;
+using Apps.Middlewares;
 using Apps.Options;
 using Apps.Services;
+using Asp.Versioning;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
-using Microsoft.EntityFrameworkCore;
+using System.Threading.RateLimiting;
 var builder = WebApplication.CreateBuilder(args);
 var jwtKey = builder.Configuration["Jwt:Key"]!;
 
@@ -64,14 +67,67 @@ builder.Services.AddDbContext<DatabaseContext>(
 
 builder.Services.AddServices();
 builder.Services.AddRepositories();
+// Register API versioning services.
+builder.Services
+    .AddApiVersioning(options =>
+    {
+        // Use version 1.0 as the default API version.
+        options.DefaultApiVersion = new ApiVersion(1, 0);
+
+        // Treat requests without an explicit version as v1.
+        options.AssumeDefaultVersionWhenUnspecified = true;
+
+        // Include supported/deprecated version information in responses.
+        options.ReportApiVersions = true;
+
+        // Read the version from the URL path.
+        options.ApiVersionReader =
+            new UrlSegmentApiVersionReader();
+    })
+    // Connect API versioning to MVC controllers.
+    .AddMvc();
+
+builder.Services.AddRateLimiter(options =>
+{
+    options.GlobalLimiter =
+        PartitionedRateLimiter.Create<HttpContext, string>(
+            httpContext =>
+            {
+                var ipAddress =
+                    httpContext.Connection.RemoteIpAddress?.ToString()
+                    ?? "unknown";
+
+                return RateLimitPartition.GetFixedWindowLimiter(
+                    partitionKey: ipAddress,
+                    factory: _ => new FixedWindowRateLimiterOptions
+                    {
+                        PermitLimit = 60,
+                        Window = TimeSpan.FromMinutes(1),
+                        QueueLimit = 0,
+                        AutoReplenishment = true
+                    });
+            });
+
+    options.RejectionStatusCode = StatusCodes.Status429TooManyRequests;
+});
+
+builder.Services.AddHealthChecks()
+
+    // Check whether the configured EF Core database is accessible.
+    .AddDbContextCheck<DatabaseContext>();
 var app = builder.Build();
 app.UseRouting();
 
 app.UseAuthentication();
 app.UseAuthorization();
+app.UseRateLimiter();
 // Map the conventional controller route
 app.MapControllers();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+app.MapHealthChecks("/health");
+app.UseMiddleware<RequestLoggingMiddleware>();
+app.UseMiddleware<ExceptionMiddleware>();
+
 app.Run();

@@ -1,13 +1,14 @@
 ﻿using Apps.Dtos.Categories;
+using Apps.Entities;
 using Apps.Repository;
 
 namespace Apps.Services
 {
     public interface ICategory
     {
-         Task<List<GetCategoriesDto>> GetCategories(FilterCategories request);
+         Task<List<GetCategoriesDto>> GetCategories(FilterCategories request,CancellationToken cancellationToken);
 
-        Task<GetCategoryDto> GetCategoryById(int id);
+        Task<Category> GetCategoryById(int id);
 
         Task StoreCategory(CreateCategoryDto data);
 

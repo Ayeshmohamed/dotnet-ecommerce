@@ -15,9 +15,9 @@ namespace Apps.Repository
             _filesUpload = filesUpload;
         }
 
-        public async Task<List<GetCategoriesDto>> GetCategories(FilterCategories request)
+        public async Task<List<GetCategoriesDto>> GetCategories(FilterCategories request,CancellationToken cancellationToken)
         {
-            var categories = _context.Categories.AsNoTracking();
+            IQueryable<Category> categories = _context.Categories.AsNoTracking();
 
             if (request.CategoryId is not null){
                 
@@ -63,7 +63,7 @@ namespace Apps.Repository
                    } : null,
                }).
                
-               ToListAsync();
+               ToListAsync(cancellationToken);
 
         }
 
